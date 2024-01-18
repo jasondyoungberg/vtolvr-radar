@@ -70,7 +70,7 @@ impl Component for App {
     }
 
     fn rendered(&mut self, _ctx: &Context<Self>, _first_render: bool) {
-        log::info!("Rendered App");
+        log::info!("Render: App");
     }
 }
 
