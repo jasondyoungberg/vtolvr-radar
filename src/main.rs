@@ -16,6 +16,7 @@ pub struct App {
 pub enum Msg {
     DeleteUnit(usize),
     UpdateUnit(usize, Unit),
+    AddUnit(Unit),
 }
 
 impl Component for App {
@@ -26,15 +27,12 @@ impl Component for App {
         log::info!("Revieved message: {:?}", msg);
 
         match msg {
-            Msg::DeleteUnit(i) => {
-                self.units.remove(i);
-                true
-            },
-            Msg::UpdateUnit(i, unit) => {
-                self.units[i] = unit;
-                true
-            }
-        }
+            Msg::DeleteUnit(i)       => { self.units.remove(i);  },
+            Msg::UpdateUnit(i, unit) => { self.units[i] = unit;  },
+            Msg::AddUnit(unit)       => { self.units.push(unit); },
+        };
+
+        true
     }
 
     fn create(_ctx: &Context<Self>) -> Self {
