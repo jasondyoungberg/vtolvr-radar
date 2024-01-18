@@ -3,8 +3,11 @@ extern crate nalgebra as na;
 
 use std::vec;
 
+mod component;
 mod unit;
 mod input;
+
+use component::*;
 use unit::*;
 
 #[derive(Debug)]
