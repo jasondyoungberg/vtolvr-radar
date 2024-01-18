@@ -1,7 +1,6 @@
 use yew::prelude::*;
 use yew_autoprops::autoprops;
 
-use crate::component::TextInput;
 use crate::Msg;
 use crate::Unit;
 
@@ -10,44 +9,23 @@ use crate::Unit;
 pub fn unit_config(
     unit: &Unit,
     id: usize,
+    is_selected: bool,
     messenger: Callback<Msg>,
 ) -> Html {
-    html! {
-        <div class="unit">
-            <p class="name">{ &unit.name }</p>
-            <p class="position">
-                {format!("Position: ({:.2}, {:.2}, {:.2})",
-                    unit.position.x, unit.position.y, unit.position.z)}
-            </p>
-            <p class="velocity">
-                {format!("Velocity: ({:.2}, {:.2}, {:.2})",
-                    unit.velocity.x, unit.velocity.y, unit.velocity.z)}
-            </p>
-            <p class="rotation">
-                {format!("Rotation: ({:.2}, {:.2}, {:.2}, {:.2})",
-                    unit.rotation.coords.x, unit.rotation.coords.y,
-                    unit.rotation.coords.z, unit.rotation.coords.w)}
-            </p>
 
+    let delete_onclick = messenger.reform(move |_| Msg::DeleteUnit(id));
+
+    html! {
+        <div class={
+            if is_selected {
+                "unit selected"
+            } else {
+                "unit"
+            }
+        }>
+            <p class="name">{ unit.name() }</p>
             <pre><code>{format!("{:?}", unit)}</code></pre>
-            <TextInput
-                value={unit.name.clone()}
-                on_change={
-                    let unit = unit.clone();
-                    messenger.reform(move |txt| {
-                        let mut new_unit = unit.clone();
-                        new_unit.name = txt;
-                        Msg::UpdateUnit(id, new_unit)
-                    })
-                }
-            />
-            <button
-                onclick={
-                    messenger.reform(move |_| Msg::DeleteUnit(id))
-                }
-            >
-                {"Delete"}
-            </button>
+            <button onclick={delete_onclick}>{"Delete"}</button>
         </div>
     }
 }

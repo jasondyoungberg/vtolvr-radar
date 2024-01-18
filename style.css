@@ -4,12 +4,31 @@ html {
     font-family: sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    display: grid;
+    padding: 1em;
+
+    grid-template-columns: auto 20em;
+}
+
+.map {
+    background-color: #003;
+}
+
 .unit {
     display: grid;
 
-    border: 2px solid white;
-    margin: 5px;
-    padding: 5px;
+    border: 0.1em solid white;
+    padding: 1em;
+}
+
+.unit.selected {
+    border: 0.1em solid red;
 }
 
 .unit .name {
@@ -25,4 +44,8 @@ html {
     display: block;
     background-color: #333;
     padding: 0.5em;
+}
+
+.unit pre {
+    white-space: pre-wrap;
 }
