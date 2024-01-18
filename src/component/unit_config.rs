@@ -25,6 +25,20 @@ impl Component for UnitConfig {
         html! {
             <div class="unit">
                 <p class="name">{ &unit.name }</p>
+                <p class="position">
+                    {format!("Position: ({:.2}, {:.2}, {:.2})",
+                        unit.position.x, unit.position.y, unit.position.z)}
+                </p>
+                <p class="velocity">
+                    {format!("Velocity: ({:.2}, {:.2}, {:.2})",
+                        unit.velocity.x, unit.velocity.y, unit.velocity.z)}
+                </p>
+                <p class="rotation">
+                    {format!("Rotation: ({:.2}, {:.2}, {:.2}, {:.2})",
+                        unit.rotation.coords.x, unit.rotation.coords.y,
+                        unit.rotation.coords.z, unit.rotation.coords.w)}
+                </p>
+
                 <pre><code>{format!("{:?}", unit)}</code></pre>
                 <TextInput
                     value={unit.name.clone()}
