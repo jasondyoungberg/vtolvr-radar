@@ -3,7 +3,7 @@ use crate::*;
 #[derive(Properties, PartialEq)]
 pub struct UnitListProps {
     pub units: Vec<Unit>,
-    pub on_update: Callback<Msg>
+    pub messenger: Callback<Msg>
 }
 
 pub struct UnitList { }
@@ -16,26 +16,19 @@ impl Component for UnitList {
         UnitList { }
     }
 
-    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
-        ctx.props().on_update.emit(msg);
-        true
-    }
-
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let link = ctx.link();
-        ctx.props().units.iter().enumerate().map(|(i, unit)| {
+        let props = ctx.props();
+        let messenger = &props.messenger;
+
+        props.units.iter().enumerate().map(|(i, unit)| {
             html!{
                 <UnitConfig
                     unit={unit.clone()}
                     id={i}
-                    on_update={link.callback(|msg| msg)}
+                    messenger={messenger.clone()}
                 />
             }
         }).collect::<Html>()
-    }
-
-    fn rendered(&mut self, _ctx: &Context<Self>, _first_render: bool) {
-        log::info!("Render: UnitList");
     }
 }
 

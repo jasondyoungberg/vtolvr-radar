@@ -43,18 +43,10 @@ impl Component for App {
     fn create(_ctx: &Context<Self>) -> Self {
         App {
             units: vec![
-                Unit {
-                    name: "Unit 1".to_string(),
-                    position: na::Vector3::new(0.0, 0.0, 0.0),
-                },
-                Unit {
-                    name: "Unit 2".to_string(),
-                    position: na::Vector3::new(0.0, 0.0, 0.0),
-                },
-                Unit {
-                    name: "Unit 3".to_string(),
-                    position: na::Vector3::new(0.0, 0.0, 0.0),
-                },
+                Unit::new("Alpha"),
+                Unit::new("Bravo"),
+                Unit::new("Charlie"),
+                Unit::new("Delta"),
             ],
         }
     }
@@ -64,13 +56,9 @@ impl Component for App {
         html! {
             <UnitList
                 units={self.units.clone()}
-                on_update={link.callback(|msg| msg)}
+                messenger={link.callback(|msg| msg)}
             />
         }
-    }
-
-    fn rendered(&mut self, _ctx: &Context<Self>, _first_render: bool) {
-        log::info!("Render: App");
     }
 }
 

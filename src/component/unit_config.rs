@@ -1,12 +1,54 @@
-use crate::*;
+use crate::{*, input::TextInput};
 
 #[derive(Properties, PartialEq)]
 pub struct UnitConfigProps {
     pub unit: Unit,
     pub id: usize,
-    pub on_update: Callback<Msg>
+    pub messenger: Callback<Msg>
 }
 
+pub struct UnitConfig {}
+
+impl Component for UnitConfig {
+    type Message = ();
+    type Properties = UnitConfigProps;
+
+    fn create(_ctx: &Context<Self>) -> Self {
+        UnitConfig { }
+    }
+
+    fn view(&self, ctx: &Context<Self>) -> Html {
+        let props = ctx.props();
+        let id = props.id;
+        let unit = props.unit.clone();
+
+        html! {
+            <div class="unit">
+                <p class="name">{ &unit.name }</p>
+                <pre><code>{format!("{:?}", unit)}</code></pre>
+                <TextInput
+                    value={unit.name.clone()}
+                    on_change={
+                        props.messenger.reform(move |txt| {
+                            let mut new_unit = unit.clone();
+                            new_unit.name = txt;
+                            Msg::UpdateUnit(id, new_unit)
+                        })
+                    }
+                />
+                <button
+                    onclick={
+                        props.messenger.reform(move |_| Msg::DeleteUnit(id))
+                    }
+                >
+                    {"Delete"}
+                </button>
+            </div>
+        }
+    }
+}
+
+/*
 #[function_component(UnitConfig)]
 pub fn unit_config(UnitConfigProps { unit, id, on_update }: &UnitConfigProps) -> Html {
     use crate::input::TextInput;
@@ -36,10 +78,11 @@ pub fn unit_config(UnitConfigProps { unit, id, on_update }: &UnitConfigProps) ->
 
     html! {
         <div class="unit">
-            <h3>{ &unit.name }</h3>
+            <p class="name">{ &unit.name }</p>
             <pre><code>{format!("{:?}", unit)}</code></pre>
             <TextInput value={unit.name.clone()} on_change={name_handler} />
             <button onclick={delete_handler}>{"Delete"}</button>
         </div>
     }
 }
+*/

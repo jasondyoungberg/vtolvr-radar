@@ -4,13 +4,24 @@ html {
     font-family: sans-serif;
 }
 
-div.unit {
+.unit {
+    display: grid;
+
     border: 2px solid white;
     margin: 5px;
     padding: 5px;
 }
 
-code {
+.unit .name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.unit * {
+    margin: 0;
+}
+
+.unit code {
     display: block;
     background-color: #333;
     padding: 0.5em;
