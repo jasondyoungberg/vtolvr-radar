@@ -1,6 +1,4 @@
-extern crate nalgebra as na;
-
-use na::{Vector3, UnitQuaternion};
+use nalgebra::{Vector3, UnitQuaternion};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Unit {

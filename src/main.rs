@@ -1,14 +1,11 @@
 use yew::prelude::*;
-extern crate nalgebra as na;
-
-use std::vec;
 
 mod component;
 mod unit;
-mod input;
 
-use component::*;
-use unit::*;
+pub use unit::Unit;
+
+use component::UnitList;
 
 #[derive(Debug)]
 pub struct App {

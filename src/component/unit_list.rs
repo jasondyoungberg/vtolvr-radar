@@ -1,4 +1,4 @@
-use crate::UnitConfig;
+use crate::component::UnitConfig;
 use crate::Unit;
 use crate::Msg;
 
