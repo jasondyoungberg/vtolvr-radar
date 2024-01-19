@@ -29,7 +29,7 @@ impl Unit {
 
         match rng.gen_range(0..4) {
             0 => Unit::Fa26(Fa26 { name, position }),
-            1 => Unit::F45(F45 { name, position }),
+            1 => Unit::F45 (F45  { name, position }),
             2 => Unit::Mad4(Mad4 { name, position }),
             3 => Unit::Nmss(Nmss { name, position }),
             _ => unreachable!(),
