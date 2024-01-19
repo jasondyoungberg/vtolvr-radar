@@ -1,4 +1,3 @@
-use rand::random;
 use yew::prelude::*;
 use yew_autoprops::autoprops;
 use std::rc::Rc;
@@ -37,7 +36,7 @@ impl Reducible for Data {
 pub fn DataProvider(
     children: Html
 ) -> Html {
-    use crate::unit::*;
+    use crate::unit::Unit;
 
     let data = use_reducer(|| Data {
         units: rand::random::<[Unit; 10]>().to_vec(),

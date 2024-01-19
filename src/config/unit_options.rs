@@ -28,7 +28,6 @@ pub fn UnitOptions(
             class={if is_selected {"unit selected"} else {"unit"}}
             onclick={select_onclick}
         >
-            {{log::info!("UnitConfig");""}}
             <p class="name">
                 { this_unit.name() }{" "}
                 <span style="color: #ccc">

@@ -5,15 +5,12 @@ mod config;
 mod unit;
 mod data;
 mod map;
-
 mod input;
 
-use config::ConfigPanel;
 
 #[function_component]
 pub fn App() -> Html {
-    use crate::data::DataProvider;
-    use crate::map::ScenarioMap;
+    use crate::{config::ConfigPanel, data::DataProvider, map::ScenarioMap};
 
     log::info!("App");
 

@@ -1,13 +1,11 @@
 use yew::prelude::*;
 
-use crate::config::UnitOptions;
-
 mod unit_options;
-pub use unit_options::*;
 
 #[function_component]
 pub fn ConfigPanel() -> Html {
     use crate::data::{DataContext, DataAction};
+    use unit_options::UnitOptions;
 
     let data_ctx = use_context::<DataContext>().unwrap();
 
