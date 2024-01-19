@@ -54,7 +54,7 @@ pub fn DataProvider(
 
     html! {
         <ContextProvider<DataContext> context={data}>
-            {children.clone()}
+            {children}
         </ContextProvider<DataContext>>
     }
 }
