@@ -6,12 +6,11 @@ mod mad4; pub use mad4::Mad4;
 mod nmss; pub use nmss::Nmss;
 
 use rand::random;
-use yew::html;
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum Unit {
     Fa26(Fa26),
-    F45(F45),
+    F45 (F45 ),
     Mad4(Mad4),
     Nmss(Nmss),
 }
@@ -40,7 +39,7 @@ impl Unit {
     pub fn name(&self) -> &str {
         match self {
             Unit::Fa26(unit) => &unit.name,
-            Unit::F45(unit) => &unit.name,
+            Unit::F45 (unit) => &unit.name,
             Unit::Mad4(unit) => &unit.name,
             Unit::Nmss(unit) => &unit.name,
         }
@@ -49,7 +48,7 @@ impl Unit {
     pub fn position(&self) -> &Vector3<f64> {
         match self {
             Unit::Fa26(unit) => &unit.position,
-            Unit::F45(unit) => &unit.position,
+            Unit::F45 (unit) => &unit.position,
             Unit::Mad4(unit) => &unit.position,  
             Unit::Nmss(unit) => &unit.position,
         }
@@ -58,7 +57,7 @@ impl Unit {
     pub fn type_name(&self) -> &str {
         match self {
             Unit::Fa26(_) => "F/A-26B",
-            Unit::F45(_) => "F-45A",
+            Unit::F45 (_) => "F-45A",
             Unit::Mad4(_) => "MAD-4",
             Unit::Nmss(_) => "NMSS",
         }
@@ -66,8 +65,8 @@ impl Unit {
 
     pub fn icon(&self, color: &str) -> yew::Html {
         match self {
-            Unit::F45(unit) => unit.icon(color),
             Unit::Fa26(unit) => unit.icon(color),
+            Unit::F45 (unit) => unit.icon(color),
             Unit::Mad4(unit) => unit.icon(color),
             Unit::Nmss(unit) => unit.icon(color),
         }
