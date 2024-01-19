@@ -1,3 +1,4 @@
+use rand::random;
 use yew::prelude::*;
 use yew_autoprops::autoprops;
 use std::rc::Rc;
@@ -39,16 +40,7 @@ pub fn DataProvider(
     use crate::unit::*;
 
     let data = use_reducer(|| Data {
-        units: vec![
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-        ],
+        units: rand::random::<[Unit; 10]>().to_vec(),
         selected: None,
     });
 

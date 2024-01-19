@@ -8,13 +8,12 @@ pub use unit_options::*;
 #[function_component]
 pub fn ConfigPanel() -> Html {
     use crate::data::{DataContext, DataAction};
-    use crate::unit::Unit;
 
     let data_ctx = use_context::<DataContext>().unwrap();
 
     let new_onclick = {
         let data_ctx = data_ctx.clone();
-        move |_| data_ctx.dispatch(DataAction::Add(Unit::random()))
+        move |_| data_ctx.dispatch(DataAction::Add(rand::random()))
     };
 
     html!{
