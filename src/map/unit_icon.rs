@@ -20,16 +20,17 @@ pub fn UnitIcon(
 
     let position = view.transform(this_unit.position().xz());
 
-    let cx = (50.0 + position.x).to_string();
-    let cy = (50.0 - position.y).to_string();
+    let transform = format!("translate({} {}) scale(0.2)",
+        (50.0 + position.x), (50.0 - position.y));
 
     let fill = if is_selected { "#f33" } else { "#900" };
 
     let onclick = move |_| data_ctx.dispatch(DataAction::Select(id));
 
     html!{
-        <circle {onclick} {cx} {cy} r="1" {fill}>
+        <g {onclick} {transform}>
+            {this_unit.icon(fill)}
             <title>{name}</title>
-        </circle>
+        </g>
     }
 }

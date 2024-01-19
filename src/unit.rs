@@ -6,6 +6,7 @@ mod mad4; pub use mad4::Mad4;
 mod nmss; pub use nmss::Nmss;
 
 use rand::random;
+use yew::html;
 
 #[derive(Clone, Debug, PartialEq)]
 pub enum Unit {
@@ -60,6 +61,15 @@ impl Unit {
             Unit::F45(_) => "F-45A",
             Unit::Mad4(_) => "MAD-4",
             Unit::Nmss(_) => "NMSS",
+        }
+    }
+
+    pub fn icon(&self, color: &str) -> yew::Html {
+        match self {
+            Unit::F45(unit) => unit.icon(color),
+            Unit::Fa26(unit) => unit.icon(color),
+            Unit::Mad4(unit) => unit.icon(color),
+            Unit::Nmss(unit) => unit.icon(color),
         }
     }
 }
