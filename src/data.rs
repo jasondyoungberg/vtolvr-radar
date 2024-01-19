@@ -1,4 +1,5 @@
 use yew::prelude::*;
+use yew_autoprops::autoprops;
 use std::rc::Rc;
 use crate::unit::Unit;
 
@@ -30,14 +31,11 @@ impl Reducible for Data {
     }
 }
 
-#[derive(Properties, Debug, PartialEq)]
-pub struct DataProviderProps {
-    #[prop_or_default]
-    pub children: Html,
-}
-
+#[autoprops]
 #[function_component]
-pub fn DataProvider(props: &DataProviderProps) -> Html {
+pub fn DataProvider(
+    children: Html
+) -> Html {
     use crate::unit::*;
     use crate::convert;
 
@@ -89,7 +87,7 @@ pub fn DataProvider(props: &DataProviderProps) -> Html {
 
     html! {
         <ContextProvider<DataContext> context={data}>
-            {props.children.clone()}
+            {children.clone()}
         </ContextProvider<DataContext>>
     }
 }
