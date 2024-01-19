@@ -2,11 +2,7 @@ use wasm_bindgen::{JsCast, UnwrapThrowExt};
 use web_sys::{Event, HtmlInputElement, InputEvent};
 use yew::prelude::*;
 
-#[derive(Clone, PartialEq, Properties)]
-pub struct TextInputProps {
-    pub value: String,
-    pub on_change: Callback<String>,
-}
+use yew_autoprops::autoprops;
 
 fn get_value_from_input_event(e: InputEvent) -> String {
     let event: Event = e.dyn_into().unwrap_throw();
@@ -15,11 +11,12 @@ fn get_value_from_input_event(e: InputEvent) -> String {
     target.value()
 }
 
-/// Controlled Text Input Component
-#[function_component(TextInput)]
-pub fn text_input(props: &TextInputProps) -> Html {
-    let TextInputProps { value, on_change } = props.clone();
-
+#[autoprops]
+#[function_component]
+pub fn TextInput(
+    value: &AttrValue,
+    on_change: Callback<String>,
+) -> Html {
     let oninput = Callback::from(move |input_event: InputEvent| {
         on_change.emit(get_value_from_input_event(input_event));
     });

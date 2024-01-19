@@ -14,10 +14,19 @@ body {
     padding: 1em;
 
     grid-template-columns: auto 20em;
+    column-gap: 1em;
+    align-items: start;
 }
 
 .map {
     background-color: #003;
+}
+
+.config {
+    background-color: #030;
+    display: grid;
+
+    row-gap: 1em;
 }
 
 .unit {
@@ -28,7 +37,8 @@ body {
 }
 
 .unit.selected {
-    border: 0.1em solid red;
+    outline: 0.2em solid red;
+    background: #300;
 }
 
 .unit .name {

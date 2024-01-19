@@ -1,16 +1,19 @@
 use yew::prelude::*;
 
-mod component;
+mod convert;
+mod config;
 mod unit;
 mod data;
-mod scenario_map;
+mod map;
 
-use component::UnitList;
+mod input;
+
+use config::ConfigPanel;
 
 #[function_component]
 pub fn App() -> Html {
     use crate::data::DataProvider;
-    use crate::scenario_map::ScenarioMap;
+    use crate::map::ScenarioMap;
 
     log::info!("App");
 
@@ -18,7 +21,7 @@ pub fn App() -> Html {
         <div class="main">
             <DataProvider>
                 <ScenarioMap />
-                <UnitList />
+                <ConfigPanel />
             </DataProvider>
         </div>
     }

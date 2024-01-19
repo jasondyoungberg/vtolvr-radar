@@ -25,7 +25,7 @@ pub fn scenario_map() -> Html {
 
                     let onclick = {
                         let data_ctx = data_ctx.clone();
-                        move |_| data_ctx.dispatch(DataAction::SelectUnit(i))
+                        move |_| data_ctx.dispatch(DataAction::Select(i))
                     };
 
                     html!{
