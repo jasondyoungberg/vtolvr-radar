@@ -1,16 +1,10 @@
 use nalgebra::Vector2;
 use yew::prelude::*;
-use yew_autoprops::autoprops;
 
-use crate::Msg;
-use crate::Unit;
-
-#[autoprops]
 #[function_component(ScenarioMap)]
-pub fn scenario_map(
-    units: &Vec<Unit>,
-    messenger: Callback<Msg>,
-) -> Html {
+pub fn scenario_map() -> Html {
+    use crate::data::{DataContext, DataAction};
+    let data_ctx = use_context::<DataContext>().unwrap();
 
     let center = Vector2::new(0.0, 0.0);
     let scale = 1.0/1000.0;
@@ -19,7 +13,7 @@ pub fn scenario_map(
         <div class="map">
             <svg
                 viewBox="0 0 100 100">
-                { units.iter().enumerate().map(|(i,unit)| {
+                { data_ctx.units.iter().enumerate().map(|(i,unit)| {
 
                     let name = unit.name().to_owned();
 
@@ -29,9 +23,10 @@ pub fn scenario_map(
                     let cx = (50.0 + position.x).to_string();
                     let cy = (50.0 - position.y).to_string();
 
-                    let onclick = messenger.clone().reform(move |_| {
-                        Msg::Select(i)
-                    });
+                    let onclick = {
+                        let data_ctx = data_ctx.clone();
+                        move |_| data_ctx.dispatch(DataAction::SelectUnit(i))
+                    };
 
                     html!{
                         <circle {onclick} {cx} {cy} r="1" fill="red">

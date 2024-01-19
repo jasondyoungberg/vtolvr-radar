@@ -1,27 +1,17 @@
 use crate::component::UnitConfig;
-use crate::Unit;
-use crate::Msg;
 
 use yew::prelude::*;
-use yew_autoprops::autoprops;
 
-#[autoprops]
-#[function_component(UnitList)]
-pub fn unit_list(
-    units: &Vec<Unit>,
-    selected_id: Option<usize>,
-    messenger: Callback<Msg>
-) -> Html {
+#[function_component]
+pub fn UnitList() -> Html {
+    use crate::data::DataContext;
+    let data_ctx = use_context::<DataContext>().unwrap();
+
     html!{
         <div class="config">
-            {units.iter().enumerate().map(|(i, unit)| {
+            {data_ctx.units.iter().enumerate().map(|(i, unit)| {
                 html!{
-                    <UnitConfig 
-                        unit={unit.clone()}
-                        id={i}
-                        is_selected={selected_id == Some(i)}
-                        messenger={messenger.clone()}
-                    />
+                    <UnitConfig id={i}/>
                 }
             }).collect::<Html>()}
         </div>
