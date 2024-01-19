@@ -17,6 +17,8 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+      - name: Add Wasm target
+        run: rustup target add wasm32-unknown-unknown
       - name: Install Trunk
         run: |
           curl -LO https://github.com/trunk-rs/trunk/releases/download/v0.18.6/trunk-x86_64-unknown-linux-gnu.tar.gz
