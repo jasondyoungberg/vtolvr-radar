@@ -16,16 +16,20 @@ pub enum Unit {
 }
 
 impl Unit {
-    pub fn random() -> Self {
+    pub fn random(seed: u64) -> Self {
         use rand::Rng;
-        let mut rng = rand::thread_rng();
+        use rand::SeedableRng;
+        use rand::rngs::StdRng;
 
-        let name = format!("Random {}", random::<u16>());
+        let mut rng = StdRng::seed_from_u64(seed);
+
+        let name = format!("Random {}", rng.gen::<u16>());
         let position = Vector3::new(
             rng.gen_range( -40_000.0 .. 40_000.0 ),
             rng.gen_range(       0.0 .. 10_000.0 ),
             rng.gen_range( -40_000.0 .. 40_000.0 ),
         );
+        // END: ed8c6549bwf9
 
         match rng.gen_range(0..4) {
             0 => Unit::Fa26(Fa26 { name, position }),

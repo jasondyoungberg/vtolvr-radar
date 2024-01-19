@@ -14,7 +14,8 @@ pub fn ConfigPanel() -> Html {
 
     let new_onclick = {
         let data_ctx = data_ctx.clone();
-        move |_| data_ctx.dispatch(DataAction::Add(Unit::random()))
+        let seed = data_ctx.units.len() as u64;
+        move |_| data_ctx.dispatch(DataAction::Add(Unit::random(seed)))
     };
 
     html!{

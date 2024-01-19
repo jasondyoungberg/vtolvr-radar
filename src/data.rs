@@ -40,14 +40,14 @@ pub fn DataProvider(
 
     let data = use_reducer(|| Data {
         units: vec![
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
-            Unit::random(),
+            Unit::random(0),
+            Unit::random(1),
+            Unit::random(2),
+            Unit::random(3),
+            Unit::random(4),
+            Unit::random(5),
+            Unit::random(6),
+            Unit::random(7),
         ],
         selected: None,
     });
