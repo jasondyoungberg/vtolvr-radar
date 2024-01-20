@@ -22,6 +22,14 @@ body {
     background-color: #003;
 }
 
+.map .unit-icon {
+    opacity: 0.5;
+}
+
+.map .unit-icon.selected {
+    opacity: 1;
+}
+
 .config {
     background-color: #030;
     display: grid;

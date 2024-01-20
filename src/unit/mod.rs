@@ -41,12 +41,12 @@ impl Unit {
         }
     }
 
-    pub fn icon(&self, color: &str) -> yew::Html {
+    pub fn icon(&self) -> yew::Html {
         match self {
-            Unit::Fa26(unit) => unit.icon(color),
-            Unit::F45 (unit) => unit.icon(color),
-            Unit::Mad4(unit) => unit.icon(color),
-            Unit::Nmss(unit) => unit.icon(color),
+            Unit::Fa26(unit) => unit.icon(),
+            Unit::F45 (unit) => unit.icon(),
+            Unit::Mad4(unit) => unit.icon(),
+            Unit::Nmss(unit) => unit.icon(),
         }
     }
 }

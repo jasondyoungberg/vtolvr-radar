@@ -8,9 +8,14 @@ pub struct F45 {
 }
 
 impl F45 {
-    pub fn icon(&self, color: &str) -> Html {
-        let d = "M 0 -10 L 2 -6 L 2 -4 L 6 0 L 2 0 L 10 8 L 2 8 L 4 10 L 2 10 L 0 8 L -2 10 L -4 10 L -2 8 L -10 8 L -2 0 L -6 0 L -2 -4 L -2 -6 Z";
-        html! { <path {d} fill={color.to_owned()} /> }
+    pub fn icon(&self) -> Html {
+        let heading = 0.0f64;//self.rotation.euler_angles().2;
+        let transform = format!("rotate({})", heading.to_degrees());
+
+        html!{
+            <image href="img/f45.png" {transform}
+            x="-50" y="-50" width="100" height="100" />
+        }
     }
 }
 

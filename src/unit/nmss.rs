@@ -8,9 +8,8 @@ pub struct Nmss {
 }
 
 impl Nmss {
-    pub fn icon(&self, color: &str) -> Html {
-        let d = "M -10 0 L 10 0 L 0 5 Z";
-        html! { <path {d} fill={color.to_owned()} /> }
+    pub fn icon(&self) -> Html {
+        html! { <circle cx="0" cy="0" r="50" fill="#999"/> }
     }
 }
 

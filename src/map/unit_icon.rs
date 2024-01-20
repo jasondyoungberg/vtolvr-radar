@@ -18,15 +18,16 @@ pub fn UnitIcon(
     let name = this_unit.name().to_owned();
     let position = view.transform(this_unit.position().xz());
 
-    let color = if is_selected { "#f33" } else { "#900" };
 
     let onclick = move |_| data_ctx.dispatch(DataAction::Select(id));
-    let transform = format!("translate({} {}) scale(0.2)",
+    let class = if is_selected { "unit-icon selected" } else { "unit-icon" };
+    let transform = format!("translate({} {}) scale(0.1)",
         (50.0 + position.x), (50.0 - position.y));
 
     html!{
-        <g {onclick} {transform}>
-            {this_unit.icon(color)}
+        <g {transform} {class}>
+            {this_unit.icon()}
+            <circle r=50 opacity=0 {onclick}/>
             <title>{name}</title>
         </g>
     }
